@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/frontend/assets/css/user/notice/report.css">
     <link rel="stylesheet" href="/frontend/assets/css/user/notice/popup.css">
+    <link rel="stylesheet" href="/frontend/assets/css/user/notice/calendar.css">
 
-    <script src="/frontend/assets/js/user/notice/report.js" defer></script>
-    <script src="/frontend/assets/js/user/notice/popup.js" defer></script>
+    <script type="module" src="/frontend/assets/js/user/notice/report.js" defer></script>
+    <script type="module" src="/frontend/assets/js/user/notice/popup.js" defer></script>
+    <script type="module" src="/frontend/assets/js/user/notice/subjectSelector.js" defer></script>
+    <script type="module" src="/frontend/assets/js/user/notice/calendar.js" defer></script>
+    <script type="module" src="/frontend/assets/js/header.js" defer></script>
     <title>Document</title>
 </head>
 <body>
     <div id="root">
-        <header class="header-container">
+        <header class="header-container" id="headerContainer">
         </header>
         
         <div class="main-container">
@@ -20,8 +24,55 @@
                 <div class="filter-container__inner">
                     <div class="filter-container__inner__left">
                         <div class="filter-date-container">
-                            <div class="filter-date-placeholder filter-placeholder">기간 선택 · 전체</div>
-                            <div class="filter-date-selector"></div>
+                            <div class="filter-date-container__inner">
+                                <div class="filter-date-placeholder filter-placeholder" id="dateFilterText">기간 선택 · 전체</div>
+                                <div class="filter-date-selector" id="dateFilterTrigger"></div>
+                            </div>
+
+                            <div class="date-picker-panel" id="datePickerPanel">
+                                <div class="date-picker-top">
+                                <div class="date-picker-title">기간 선택</div>
+                                <button type="button" class="date-picker-close" id="datePickerClose">x</button>
+                                </div>
+
+                                <div class="date-picker-quick">
+                                <button type="button" class="quick-btn active" data-range="all">전체</button>
+                                <button type="button" class="quick-btn" data-range="today">오늘</button>
+                                <button type="button" class="quick-btn" data-range="week">이번 주</button>
+                                <button type="button" class="quick-btn" data-range="month">이번 달</button>
+                                </div>
+
+                                <div class="date-picker-calendar">
+                                <div class="calendar-header">
+                                    <button type="button" class="month-nav" id="prevMonth">&lt;</button>
+                                    <div class="month-title" id="monthTitle">2026년 3월</div>
+                                    <button type="button" class="month-nav" id="nextMonth">&gt;</button>
+                                </div>
+
+                                <div class="week-row">
+                                    <div>일</div>
+                                    <div>월</div>
+                                    <div>화</div>
+                                    <div>수</div>
+                                    <div>목</div>
+                                    <div>금</div>
+                                    <div>토</div>
+                                </div>
+
+                                <div class="day-grid" id="dayGrid"></div>
+                                </div>
+
+                                <div class="date-picker-bottom">
+                                <div class="selected-range" id="selectedRange">
+                                    전체 기간
+                                </div>
+
+                                <div class="date-picker-actions">
+                                    <button type="button" class="action-btn reset-btn" id="resetDate">초기화</button>
+                                    <button type="button" class="action-btn apply-btn" id="applyDate">적용</button>
+                                </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="filter-subject-container">
                             <div class="filter-subject-placeholder filter-placeholder">필터링할 과목명을 선택해주세요.</div>
@@ -29,9 +80,7 @@
                             <div class="filter-subject-dropdown disabled">
                             <!-- <div class="filter-subject-dropdown"> -->
                                 <ul class="filter-subject-dropdown__inner">
-                                    <li class="filter-subject-item">과목 1</li>
-                                    <li class="filter-subject-item">과목 2</li>
-                                    <li class="filter-subject-item">과목 3</li>
+
                                 </ul>
                             </div>
                         </div>
@@ -82,150 +131,7 @@
                         <div class="list-sub-title">멘토·멘티 학습일지를 날짜, 상태, 성취도 기준으로 확인할 수 있습니다.</div>
                     </div>
                     <ul class="list-content-container">
-                        <li class="list-content">
-                            <div class="list-content__title">
-                                <div class="list-content__date">
-                                    <span>3월 2주차</span>
-                                </div>
-                                <div class="list-content__subtitle">
-                                    <span class="date">2026.03.08 ~ 2026.03.15</span>
-                                    <span class="desc">이번 주에 작성된 학습보고서</span>
-                                </div>
-                            </div>
-                            <div class="list-content__body">
-                                <div class="list-content__body-title">
-                                    <span class="write-date">작성일</span>
-                                    <span class="report-name">학습일지명</span>
-                                    <span class="mentor-mentee-name">멘토/멘티</span>
-                                    <span class="subject-name">과목명</span>
-                                    <span class="week">주차</span>
-                                    <span class="session">회차</span>
-                                    <span class="actions">관리</span>
-                                </div>
-                                <ul class="list-content__body-content">
-                                    <!-- content 1 -->
-                                    <li class="list-learning-content">
-                                        <div class="date">2026.03.12</div>
-                                        <div class="report-name">
-                                            <div class="title">영어 독해 학습일지</div>
-                                            <div class="subtitle">문장 해석 및 어휘 정리</div>
-                                        </div>
-                                        <div class="mentor-mentee-name">
-                                            <div class="mentor">김민수 멘토</div>
-                                            <div class="mentee">이시연 멘티</div>
-                                        </div>
-                                        <div class="subject-name">웹 개발</div>
-                                        <div class="week">4주차</div>
-                                        <div class="session">7회차</div>
-                                        <div class="actions">
-                                            <div class="detail">상세보기</div>
-                                            <div class="modify">수정</div>
-                                        </div>
-                                    </li>
 
-                                    <!-- content 2 -->
-                                    <li class="list-learning-content">
-                                        <div class="date">2026.03.10</div>
-                                        <div class="report-name">
-                                            <div class="title">영어 독해 학습일지</div>
-                                            <div class="subtitle">문장 해석 및 어휘 정리</div>
-                                        </div>
-                                        <div class="mentor-mentee-name">
-                                            <div class="mentor">김민수 멘토</div>
-                                            <div class="mentee">이시연 멘티</div>
-                                        </div>
-                                        <div class="subject-name">웹 개발</div>
-                                        <div class="week">4주차</div>
-                                        <div class="session">6회차</div>
-                                        <div class="actions">
-                                            <div class="detail">상세보기</div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="list-content">
-                            <div class="list-content__title">
-                                <div class="list-content__date">
-                                    <span>3월 2주차</span>
-                                </div>
-                                <div class="list-content__subtitle">
-                                    <span class="date">2026.03.08 ~ 2026.03.15</span>
-                                    <span class="desc">이번 주에 작성된 학습보고서</span>
-                                </div>
-                            </div>
-                            <div class="list-content__body">
-                                <div class="list-content__body-title">
-                                    <span class="write-date">작성일</span>
-                                    <span class="report-name">학습일지명</span>
-                                    <span class="mentor-mentee-name">멘토/멘티</span>
-                                    <span class="subject-name">과목명</span>
-                                    <span class="week">주차</span>
-                                    <span class="session">회차</span>
-                                    <span class="actions">관리</span>
-                                </div>
-                                <ul class="list-content__body-content">
-                                    <!-- content 1 -->
-                                    <li class="list-learning-content">
-                                        <div class="date">2026.03.12</div>
-                                        <div class="report-name">
-                                            <div class="title">영어 독해 학습일지</div>
-                                            <div class="subtitle">문장 해석 및 어휘 정리</div>
-                                        </div>
-                                        <div class="mentor-mentee-name">
-                                            <div class="mentor">김민수 멘토</div>
-                                            <div class="mentee">이시연 멘티</div>
-                                        </div>
-                                        <div class="subject-name">웹 개발</div>
-                                        <div class="week">4주차</div>
-                                        <div class="session">7회차</div>
-                                        <div class="actions">
-                                            <div class="detail">상세보기</div>
-                                            <div class="modify">수정</div>
-                                        </div>
-                                    </li>
-
-                                    <!-- content 2 -->
-                                    <li class="list-learning-content">
-                                        <div class="date">2026.03.10</div>
-                                        <div class="report-name">
-                                            <div class="title">영어 독해 학습일지</div>
-                                            <div class="subtitle">문장 해석 및 어휘 정리</div>
-                                        </div>
-                                        <div class="mentor-mentee-name">
-                                            <div class="mentor">김민수 멘토</div>
-                                            <div class="mentee">이시연 멘티</div>
-                                        </div>
-                                        <div class="subject-name">웹 개발</div>
-                                        <div class="week">4주차</div>
-                                        <div class="session">6회차</div>
-                                        <div class="actions">
-                                            <div class="detail">상세보기</div>
-                                        </div>
-                                    </li>
-
-                                    <!-- content 3 -->
-                                    <li class="list-learning-content">
-                                        <div class="date">2026.03.02</div>
-                                        <div class="report-name">
-                                            <div class="title">영어 독해 학습일지</div>
-                                            <div class="subtitle">문장 해석 및 어휘 정리</div>
-                                        </div>
-                                        <div class="mentor-mentee-name">
-                                            <div class="mentor">김민수 멘토</div>
-                                            <div class="mentee">이시연 멘티</div>
-                                        </div>
-                                        <div class="subject-name">웹 개발</div>
-                                        <div class="week">4주차</div>
-                                        <div class="session">6회차</div>
-                                        <div class="actions">
-                                            <div class="detail">상세보기</div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </main>
             </div>
