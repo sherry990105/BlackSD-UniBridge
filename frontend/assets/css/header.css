@@ -32,11 +32,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
 .headerInner {
-  display: +;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   height: 56px;
