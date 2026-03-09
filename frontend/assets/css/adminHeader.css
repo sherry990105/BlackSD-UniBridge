@@ -1,81 +1,17 @@
-/* @font-face {
-  font-family: "NanumSquareRound";
-  src: url("../fonts/nanum-square-round/NanumSquareRoundB.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-.admin-header {
-  width: 1280px;
-  height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px 0 18px;
-  border: 1.8px solid #3a3a3a;
-  border-radius: 18px;
-  background: #efefef;
-  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.16);
-  font-family: "NanumSquareRound", sans-serif;
-}
-
-.admin-header__logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.admin-header__logo img {
-  width: 180px;
-  display: block;
-}
-
-.admin-header__nav {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-}
-
-.admin-header__menu {
-  color: #111111;
-  text-decoration: none;
-  font-size: 28px;
-  line-height: 1;
-  transition: opacity 0.2s ease;
-}
-
-.admin-header__menu:hover {
-  opacity: 0.75;
-}
-
-.admin-header__menu--logout {
-  color: #ff2e2e;
-}
-
-.admin-header__menu.is-active {
-  position: relative;
-}
-
-.admin-header__menu.is-active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 100%;
-  height: 4px;
-  background: #111111;
-  border-radius: 999px;
-} */
-
 @font-face {
   font-family: "NanumSquareRound";
-  src: url("./../../../assets/fonts/nanum-square-round/NanumSquareRoundB.ttf") format("truetype");
+  src: url("../../assets/fonts/nanum-square-round/NanumSquareRoundB.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 .admin-header {

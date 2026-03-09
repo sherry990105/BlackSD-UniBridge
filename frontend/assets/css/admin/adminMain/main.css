@@ -103,10 +103,17 @@ body {
   flex-shrink: 0;
 }
 
-.side-icon svg {
-  width: 22px;
-  height: 22px;
+.side-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
 }
+
+/* .side-icon a {
+  width: 10px;
+  height: 10px;
+} */
 
 .side-link span:last-child {
   font-size: 18px;

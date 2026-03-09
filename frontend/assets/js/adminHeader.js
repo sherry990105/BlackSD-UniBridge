@@ -1,32 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ========================
-     경로 계산
-     예) pathname = /html/admin/adminBoard/menteeBoard/menteeBoardList.html
-     segments(파일 제외) = ["html","admin","adminBoard","menteeBoard"] → dirDepth=4
-     assets 루트(frontend/)까지: Array(dirDepth).fill("..") = "../../../../"
+     헤더 위치: /header/adminHeader.html
+     루트(frontend/) 기준 상대경로
+     로고:  ../assets/img/UniBridge.png
+     페이지: ../html/admin/adminXxx/xxx.html
   ======================== */
-  const segments = window.location.pathname.split("/").filter(Boolean);
-  const dirDepth = segments.length - 1; // 파일명 제외한 디렉토리 깊이
 
-  const toRoot  = dirDepth > 0 ? Array(dirDepth).fill("..").join("/") : ".";
-  // html/admin 까지: dirDepth - 2 단계
-  const toAdmin = dirDepth > 2 ? Array(dirDepth - 2).fill("..").join("/") : ".";
+  const toAssets = "../assets";
+  const toAdmin  = "../html/admin";
 
-  /* 로고 이미지 경로 주입 */
+  /* 로고 이미지 */
   const logoImg = document.getElementById("header-logo");
   if (logoImg) {
-    logoImg.src = `${toRoot}/assets/img/UniBridge.png`;
+    logoImg.src = `${toAssets}/img/UniBridge.png`;
   }
 
-  /* 로고 링크 */
+  /* 로고 클릭 → 메인 */
   const logoLink = document.querySelector(".admin-header__logo");
   if (logoLink) {
     logoLink.href = `${toAdmin}/adminMain/main.html`;
   }
 
   /* ========================
-     메뉴 경로
+     메뉴 경로 매핑
   ======================== */
   const menuMap = {
     main:     `${toAdmin}/adminMain/main.html`,
@@ -37,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
     matching: `${toAdmin}/adminMatching/matchingList.html`,
     logout:   `${toAdmin}/adminLogin/login.html`,
   };
+
+  /* ========================
+     현재 페이지 → 활성 메뉴 판별
+  ======================== */
 
   const pageKeyMap = {
     notice:   ["noticeList.html", "noticeDetail.html", "noticeWrite.html", "noticeEdit.html"],

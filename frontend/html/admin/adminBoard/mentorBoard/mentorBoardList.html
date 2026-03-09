@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>게시판 관리 - 멘토</title>
-  <link rel="stylesheet" href="./../../../../assets/css/adminHeader.css" />
-  <link rel="stylesheet" href="./../../../../assets/css/admin/adminBoard/board.css" />
+
+  <link rel="stylesheet" href="./../../../../assets/css/admin/adminBoard/mentorBoard/boardList.css" />
 </head>
 <body>
 
@@ -32,33 +32,31 @@
     </div>
 
     <!-- 테이블 -->
-    <table class="board-table">
-      <thead>
-        <tr>
-          <th class="col-no">번호</th>
-          <th>제목</th>
-          <th class="col-author">작성자</th>
-          <th class="col-date">작성일</th>
-          <th class="col-views">조회수</th>
-        </tr>
-      </thead>
-      <tbody id="boardTableBody"></tbody>
-    </table>
+    <div class="board-table">
+      <div class="board-table-head">
+        <div class="col-no">번호</div>
+        <div class="col-title">제목</div>
+        <div class="col-author">작성자</div>
+        <div class="col-date">작성일</div>
+        <div class="col-views">조회수</div>
+      </div>
+      <div id="boardTableBody"></div>
+    </div>
 
     <!-- 페이지네이션 -->
     <div class="pagination" id="pagination"></div>
   </div>
 
-  <script>
-    fetch("./../../../../header/adminHeader.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("header-wrap").innerHTML = html;
-        const s = document.createElement("script");
-        s.src = "./../../../../assets/js/adminHeader.js";
-        document.body.appendChild(s);
-      });
-  </script>
-  <script src="./../../../../assets/js/admin/adminBoard/board.js"></script>
+<script>
+  fetch("/header/adminHeader.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header-wrap").innerHTML = html;
+      const s = document.createElement("script");
+      s.src = "/header/adminHeader.js";
+      document.body.appendChild(s);
+    });
+</script>
+  <script src="./../../../../assets/js/admin/adminBoard/mentorBoard/boardList.js"></script>
 </body>
 </html>

@@ -4,42 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>유저 관리</title>
-  <link rel="stylesheet" href="./../../../assets/css/admin/adminUserManagement/userList.css" />
+  <link rel="stylesheet" href="./../../../assets/css/admin/adminUserManagement/user.css" />
 </head>
 <body>
+
+  <div id="header-wrap"></div>
+
   <div class="page-wrap">
-    <header class="top-header">
-      <a href="#" class="header-logo">
-        <img src="./../../../assets/img/UniBridge.png" alt="UniBridge 로고" />
-      </a>
 
-      <nav class="header-menu">
-        <a href="#">공지사항</a>
-        <a href="#">게시판</a>
-        <a href="#">학습보고서</a>
-        <a href="#">유저관리</a>
-        <a href="#">매칭</a>
-        <a href="#" class="logout-text">로그아웃</a>
-      </nav>
-    </header>
+    <!-- 상단: 타이틀 + 필터 -->
+    <div class="list-header">
+      <div class="list-title">
+        <span class="list-title-icon">
+          <img src="./../../../assets/img/admin/adminSearch/유저들 아이콘.png" alt="유저 아이콘" style="width:36px;height:36px;" />
+        </span>
+        전체 유저
+      </div>
 
-    <main class="user-page">
-      <section class="page-top">
-        <div class="page-title-wrap">
-          <span class="group-icon">👥</span>
-          <h1>전체 유저</h1>
-        </div>
+      <div class="filter-btns">
+        <button class="btn-filter" id="btnFilterType">유형</button>
+        <button class="btn-filter" id="btnFilterStatus">상태</button>
+      </div>
+    </div>
 
-        <div class="filter-wrap">
-          <button class="filter-btn">유형</button>
-          <button class="filter-btn">상태</button>
-        </div>
-      </section>
+    <!-- 유저 카드 리스트 -->
+    <div class="user-list" id="userList"></div>
 
-      <section class="user-list-section" id="userListSection"></section>
-    </main>
   </div>
 
-  <script src="./../../../assets/js/admin/adminUserManagement/userList.js"></script>
+  <script>
+  fetch("/header/adminHeader.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header-wrap").innerHTML = html;
+      const s = document.createElement("script");
+      s.src = "/header/adminHeader.js";
+      document.body.appendChild(s);
+    });
+  </script>
+
+  <script>
+  // 유저 아바타 (유저_아이콘.png)
+  const avatarSVG = `<img src="./../../../assets/img/admin/유저_아이콘.png" alt="유저 아이콘" style="width:40px;height:40px;" />`;
+
+  // 상세보기 아이콘 (상세보기_아이콘.png)
+  const detailSVG = `<img src="./../../../assets/img/admin/상세보기_아이콘.png" alt="상세보기 아이콘" style="width:36px;height:36px;" />`;
+  </script>
+
+  <script src="./../../../assets/js/admin/adminUserManagement/user.js"></script>
 </body>
 </html>

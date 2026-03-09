@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>게시판 관리 - 게시글 수정</title>
-  <link rel="stylesheet" href="./../../../../assets/css/adminHeader.css" />
-  <link rel="stylesheet" href="./../../../../assets/css/admin/adminBoard/board.css" />
+
+  <link rel="stylesheet" href="./../../../../assets/css/admin/adminBoard/mentorBoard/boardEdit.css" />
 </head>
 <body>
 
@@ -39,16 +39,16 @@
     </div>
   </div>
 
-  <script>
-    fetch("./../../../../header/adminHeader.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("header-wrap").innerHTML = html;
-        const s = document.createElement("script");
-        s.src = "./../../../../assets/js/adminHeader.js";
-        document.body.appendChild(s);
-      });
-  </script>
-  <script src="./../../../../assets/js/admin/adminBoard/board.js"></script>
+<script>
+  fetch("/header/adminHeader.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("header-wrap").innerHTML = html;
+      const s = document.createElement("script");
+      s.src = "/header/adminHeader.js";
+      document.body.appendChild(s);
+    });
+</script>
+  <script src="./../../../../assets/js/admin/adminBoard/mentorBoard/boardEdit.js"></script>
 </body>
 </html>
