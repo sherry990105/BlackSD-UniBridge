@@ -55,13 +55,6 @@
   </div>
 
   <script>
-    function selectType(type) {
-      document.getElementById("btnType").textContent = type + " ▼";
-      document.getElementById("typeDropdown").style.display = "none";
-    }
-  </script>
-
-  <script>
   fetch("/frontend/header/adminHeader.html")
     .then(res => res.text())
     .then(html => {

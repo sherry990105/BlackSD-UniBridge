@@ -44,34 +44,36 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderPagination() {
     if (!pagination) return;
     const TOTAL_PAGES = NoticeStore.totalPages(currentType, dateFrom, dateTo);
-    const GROUP_SIZE = 5;
+    if (TOTAL_PAGES === 0) { pagination.innerHTML = ""; return; }
+    const GROUP_SIZE = 10;
     const groupStart = Math.floor((currentPage - 1) / GROUP_SIZE) * GROUP_SIZE + 1;
     const groupEnd = Math.min(groupStart + GROUP_SIZE - 1, TOTAL_PAGES);
 
-    const showPrev = currentPage > 1;
-    const showNext = groupEnd < TOTAL_PAGES;
-
     let html = "";
-    if (showPrev) html += `<button class="page-btn" data-action="prev">&lt;</button>`;
+    html += `<button class="page-btn page-btn-nav" data-action="first" ${currentPage === 1 ? "disabled" : ""}>&laquo;</button>`;
+    html += `<button class="page-btn page-btn-nav" data-action="prevGroup" ${groupStart === 1 ? "disabled" : ""}>&lsaquo;</button>`;
     for (let i = groupStart; i <= groupEnd; i++) {
       html += `<button class="page-btn ${i === currentPage ? "is-active" : ""}" data-page="${i}">${i}</button>`;
     }
-    if (showNext) html += `<button class="page-btn" data-action="next">&gt;</button>`;
+    html += `<button class="page-btn page-btn-nav" data-action="nextGroup" ${groupEnd >= TOTAL_PAGES ? "disabled" : ""}>&rsaquo;</button>`;
+    html += `<button class="page-btn page-btn-nav" data-action="last" ${currentPage === TOTAL_PAGES ? "disabled" : ""}>&raquo;</button>`;
     pagination.innerHTML = html;
   }
 
   if (pagination) {
     pagination.addEventListener("click", e => {
       const btn = e.target.closest(".page-btn");
-      if (!btn) return;
+      if (!btn || btn.disabled) return;
       const TOTAL_PAGES = NoticeStore.totalPages(currentType, dateFrom, dateTo);
-      const GROUP_SIZE = 5;
+      const GROUP_SIZE = 10;
       const groupStart = Math.floor((currentPage - 1) / GROUP_SIZE) * GROUP_SIZE + 1;
       const groupEnd = Math.min(groupStart + GROUP_SIZE - 1, TOTAL_PAGES);
 
-      if (btn.dataset.action === "prev") currentPage = currentPage - 1;
-      else if (btn.dataset.action === "next") currentPage = groupEnd + 1;
-      else if (btn.dataset.page) currentPage = parseInt(btn.dataset.page);
+      if      (btn.dataset.action === "first")     currentPage = 1;
+      else if (btn.dataset.action === "prevGroup") currentPage = groupStart - 1;
+      else if (btn.dataset.action === "nextGroup") currentPage = groupEnd + 1;
+      else if (btn.dataset.action === "last")      currentPage = TOTAL_PAGES;
+      else if (btn.dataset.page)                   currentPage = parseInt(btn.dataset.page);
 
       renderTable(currentPage);
       renderPagination();
