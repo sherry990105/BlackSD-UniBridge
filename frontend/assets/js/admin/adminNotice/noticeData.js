@@ -49,20 +49,28 @@
   window.NoticeStore = {
     ITEMS_PER_PAGE,
 
-    getAll(typeFilter) {
-      const all = makePosts();
-      if (!typeFilter || typeFilter === "전체") return all;
-      return all.filter(p => p.type === typeFilter);
+    getAll(typeFilter, dateFrom, dateTo) {
+      let all = makePosts();
+      if (typeFilter && typeFilter !== "전체") {
+        all = all.filter(p => p.type === typeFilter);
+      }
+      if (dateFrom) {
+        all = all.filter(p => p.date >= dateFrom);
+      }
+      if (dateTo) {
+        all = all.filter(p => p.date <= dateTo);
+      }
+      return all;
     },
 
-    getPage(page, typeFilter) {
-      const all = this.getAll(typeFilter);
+    getPage(page, typeFilter, dateFrom, dateTo) {
+      const all = this.getAll(typeFilter, dateFrom, dateTo);
       const start = (page - 1) * ITEMS_PER_PAGE;
       return all.slice(start, start + ITEMS_PER_PAGE);
     },
 
-    totalPages(typeFilter) {
-      return Math.ceil(this.getAll(typeFilter).length / ITEMS_PER_PAGE);
+    totalPages(typeFilter, dateFrom, dateTo) {
+      return Math.ceil(this.getAll(typeFilter, dateFrom, dateTo).length / ITEMS_PER_PAGE);
     },
 
     getById(id) {
