@@ -155,7 +155,8 @@ main {
     display: flex;
     align-items: center;
     gap: 40px;
-    margin-left: 240px;
+    margin-top: 20px;
+    margin-left: 350px;
 }
 
 .userText label:first-child {

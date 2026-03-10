@@ -87,7 +87,8 @@
       sessionStorage.setItem('mentoringData', JSON.stringify(data));
 
       // 조회 페이지로 이동
-      window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
+      alert("생성되었습니다.");
+      window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
     });
   });
 })();

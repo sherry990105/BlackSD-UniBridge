@@ -272,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       if (!signUpBtn.disabled) {
         // form.submit();
+        window.location.href = '/frontend/main.html';
       }
     });
   }

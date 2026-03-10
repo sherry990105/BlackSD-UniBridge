@@ -56,7 +56,7 @@ submitBtn.onclick = (event) => {
 
     // 2. 원하는 경로를 직접 지정하여 이동합니다.
     // 예: "userModify.html" 또는 "../../main.html" 등
-    const targetPath = "../../../../../../html/user/undetermined/myPage/myPage.html"; 
+    const targetPath = "/frontend/html/user/undetermined/myPage/myPage.html"; 
     window.location.href = targetPath;
 };
 
