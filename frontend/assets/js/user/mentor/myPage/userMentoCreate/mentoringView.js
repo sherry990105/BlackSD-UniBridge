@@ -5,7 +5,7 @@
     if (!raw) {
       // 데이터 없으면 생성 페이지로 되돌아가기
       alert('멘토링 정보가 없습니다. 생성 페이지로 이동합니다.');
-      window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringCreate.html';
+      window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringCreate.html';
       return;
     }
 
@@ -34,7 +34,8 @@
       deleteBtn.addEventListener('click', function () {
         if (confirm('멘토링을 삭제하시겠습니까?')) {
           sessionStorage.removeItem('mentoringData');
-          window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringCreate.html';
+          alert("삭제되었습니다.");
+          window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringCreate.html';
         }
       });
     }
@@ -44,7 +45,7 @@
     if (editBtn) {
       editBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringModify.html';
+        window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringModify.html';
       });
     }
   });

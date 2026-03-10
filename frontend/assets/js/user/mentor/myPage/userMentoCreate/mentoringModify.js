@@ -3,14 +3,14 @@
     const raw = sessionStorage.getItem('mentoringData');
 
     if (!raw) {
-      alert('멘토링 정보가 없습니다. 조회 페이지로 이동합니다.');
-      window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
+      alert('멘토링 정보가 없습니다. 생성 페이지로 이동합니다.');
+      window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringCreate.html';
       return;
     }
 
     const data = JSON.parse(raw);
 
-    // 기존 값을 각 필드에 채우기
+
     const set = (id, value) => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -53,7 +53,7 @@
 
     const form = document.querySelector('form');
 
-    // 확인(submit) 버튼 - 유효성 검사 후 저장 & 조회 페이지로 이동
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -98,14 +98,14 @@
       sessionStorage.setItem('mentoringData', JSON.stringify(updated));
 
       // 조회 페이지로 이동
-      window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
+      window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
     });
 
     // 취소 버튼 - 저장 없이 조회 페이지로 이동
-    const cancelBtn = document.querySelector('button[type="button"]');
+    const cancelBtn = document.getElementById('cancel');
     if (cancelBtn) {
       cancelBtn.addEventListener('click', function () {
-        window.location.href = '/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
+        window.location.href = '/frontend/html/user/mentor/myPage/userMentoCreate/mentoringView.html';
       });
     }
   });
