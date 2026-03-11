@@ -207,6 +207,16 @@ html, body {
 }
 
 .page-btn:disabled {
-  cursor: default;
-  visibility: hidden;
+  display: none;
+}
+
+.page-btn-nav {
+  font-size: 18px;
+  border-color: #cccccc;
+  color: #555;
+}
+
+.page-btn-nav:hover:not(:disabled) {
+  background: #f0f0f0;
+  border-color: #aaa;
 }

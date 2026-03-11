@@ -29,15 +29,17 @@
       const timeStr = `${String(9 + (i % 10)).padStart(2,'0')}:${String(i % 60).padStart(2,'0')}`;
 
       const cmtSet = comments[i % 3];
+      const isAdmin = no % 7 === 0;
+      const author = isAdmin ? "관리자" : `작성자${no}`;
       return {
         id: no,
         title: `제목${no}`,
-        author: `작성자${no}`,
-        content: `게시글 ${no}번의 내용입니다.\n이 글은 더미 데이터로 생성된 게시글입니다.\n작성자: 작성자${no}`,
+        author,
+        content: `게시글 ${no}번의 내용입니다.\n이 글은 더미 데이터로 생성된 게시글입니다.\n작성자: ${author}`,
         date: dateStr,
         time: timeStr,
         views: Math.floor(Math.random() * 200),
-        isAdmin: no % 7 === 0,   // 7의 배수 번호만 관리자 작성글
+        isAdmin,
         comments: cmtSet.map((txt, ci) => ({
           id: ci + 1,
           nickname: `닉네임${ci + 1}`,
@@ -59,18 +61,25 @@
   window.BoardStore = {
     ITEMS_PER_PAGE,
 
-    getAll(boardType) {
-      return makePosts(boardType);
+    getAll(boardType, dateFrom, dateTo) {
+      let all = makePosts(boardType);
+      if (dateFrom) {
+        all = all.filter(p => p.date >= dateFrom);
+      }
+      if (dateTo) {
+        all = all.filter(p => p.date <= dateTo);
+      }
+      return all;
     },
 
-    getPage(boardType, page) {
-      const all = makePosts(boardType);
+    getPage(boardType, page, dateFrom, dateTo) {
+      const all = this.getAll(boardType, dateFrom, dateTo);
       const start = (page - 1) * ITEMS_PER_PAGE;
       return all.slice(start, start + ITEMS_PER_PAGE);
     },
 
-    totalPages(boardType) {
-      return Math.ceil(makePosts(boardType).length / ITEMS_PER_PAGE);
+    totalPages(boardType, dateFrom, dateTo) {
+      return Math.ceil(this.getAll(boardType, dateFrom, dateTo).length / ITEMS_PER_PAGE);
     },
 
     getById(boardType, id) {
