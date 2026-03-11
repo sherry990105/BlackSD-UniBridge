@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>공지사항 관리 - 수정</title>
 
-  <link rel="stylesheet" href="./../../../assets/css/admin/adminNotice/noticeEdit.css" />
+  <link rel="stylesheet" href="/frontend/assets/css/admin/adminNotice/noticeEdit.css" />
 </head>
 <body>
 
@@ -45,10 +45,9 @@
   
       <!-- 버튼 -->
       <div class="form-actions">
-        <button class="btn btn-blue" id="btnSave">저장</button>
-        <button class="btn btn-red" id="btnEditDelete">삭제</button>
+        <button type="button" class="btn btn-blue" id="btnSave">저장</button>
+        <button type="button" class="btn btn-red" id="btnEditDelete">삭제</button>
       </div>
-    </div>
 
     </form>
 
@@ -59,15 +58,16 @@
   </script>
 
 <script>
-  fetch("/header/adminHeader.html")
+  fetch("/frontend/header/adminHeader.html")
     .then(res => res.text())
     .then(html => {
       document.getElementById("header-wrap").innerHTML = html;
       const s = document.createElement("script");
-      s.src = "/header/adminHeader.js";
+      s.src = "/frontend/assets/js/adminHeader.js";
       document.body.appendChild(s);
     });
 </script>
-  <script src="./../../../assets/js/admin/adminNotice/noticeEdit.js"></script>
+  <script src="/frontend/assets/js/admin/adminNotice/noticeData.js"></script>
+  <script src="/frontend/assets/js/admin/adminNotice/noticeEdit.js"></script>
 </body>
 </html>

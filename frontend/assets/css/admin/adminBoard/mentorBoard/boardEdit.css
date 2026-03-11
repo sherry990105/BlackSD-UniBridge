@@ -33,8 +33,23 @@ html, body {
   margin: 28px 0 24px;
 }
 
+.form-title-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  margin-bottom: 16px;
+}
+
+.form-title-label {
+  font-size: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .form-title-input {
-  width: 100%;
+  flex: 1;
   height: 56px;
   border: 1.5px solid #cccccc;
   border-radius: 12px;
@@ -44,8 +59,9 @@ html, body {
   color: #111;
   background: #f5f5f5;
   outline: none;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   display: block;
+  width: auto;
 }
 
 .form-title-input::placeholder { color: #aaaaaa; }
@@ -100,5 +116,11 @@ html, body {
 .btn-red {
   color: #ff1f1f;
   border-color: #ff1f1f;
+  background: #fff;
+}
+
+.btn-blue {
+  color: #1f6fff;
+  border-color: #1f6fff;
   background: #fff;
 }

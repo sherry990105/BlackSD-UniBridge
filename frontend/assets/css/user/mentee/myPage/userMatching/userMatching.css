@@ -152,13 +152,12 @@ main {
     padding: 30px 40px; /* 내부 여백 조정 */
     background-color: #eef2ff;
     border-radius: 12px;
-    width: 100%; /* 컨테이너 너비에 맞춤 */
+    width: 80%; /* 컨테이너 너비에 맞춤 */
     box-sizing: border-box; /* 패딩이 너비에 영향을 주지 않도록 설정 */
 }
 
 .mentoring{
     width: 100%;
-    max-width: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -235,7 +234,7 @@ main {
     background-color: white;
     margin: 3% auto; /* 상단 여백 및 가로 중앙 정렬 */
     padding: 30px;
-    width: 500px;
+    width: 600px;
     height: 80%;
     border-radius: 20px;
     position: relative;
